@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
-    <title>MiCOKit08</title>
+    <title>Motoedy遥控车</title>
     <link href="//code.ionicframework.com/1.0.0-beta.13/css/ionic.css" rel="stylesheet">
     <style>
         #debug {
             margin-top:44px;
             background-color: white;
-            height: 300px;
+            height: 200px;
             overflow: scroll;
             color: black;
             font-size: 12px;
@@ -44,24 +44,26 @@
      </button>
  </div>
 
+   <div class="button-bar">     
+     <a class="button" style="background:black; color:white" id="toycar_go">前进</a>
+ </div>
+ 
+ <div class="button-bar">
+     <a class="button" style="background:black; color:white" id="toycar_left">左转</a>
+     <a class="button" style="background:black; color:white" id="toycar_stop">停车</a>
+     <a class="button" style="background:black; color:white" id="toycar_right">右转</a>
+ </div>
+ 
+  <div class="button-bar">
+ 		 <a class="button" style="background:black; color:white" id="toycar_back">后退</a>
+</div>
+
  <div class="button-bar">
      <a class="button" style="background:red; color:white" id="led_red">Red</a>
      <a class="button" style="background:green; color:white" id="led_green">Green</a>
      <a class="button" style="background:blue; color:white" id="led_blue">Blue</a>
  </div>
  
-   <div class="button-bar">     
-     <a class="button" style="background:black; color:white" id="toycar_go">前进</a>
- </div>
- <div class="button-bar">
-     <a class="button" style="background:black; color:white" id="toycar_left">左转</a>
-     <a class="button" style="background:black; color:white" id="toycar_stop">停车</a>
-     <a class="button" style="background:black; color:white" id="toycar_right">右转</a>
- </div>
-  <div class="button-bar">
- 		 <a class="button" style="background:black; color:white" id="toycar_back">后退</a>
-</div>
-
  <div class="button-bar">
      <a class="button" style="background:white; color:black" id="led_on">On</a>
      <a class="button" style="background:black; color:white" id="led_off">Off</a>
@@ -171,41 +173,6 @@
         }
         // document.querySelector('#led_off').addEventListener('touchstart', led_off);
         document.querySelector('#led_off').addEventListener('click', led_off);
-
-				function toycar_go() {
-            var topic = device_id+'/in/write';
-            var commond = '{"toy_car_go":true,"toy_car_back":false,"toy_car_left":false,"toy_car_right":false}';
-            client.publish(topic, commond);
-        }
-        document.querySelector('#toycar_go').addEventListener('click', 前进);
-        
-        function toycar_left() {
-            var topic = device_id+'/in/write';
-            var commond = '{"toy_car_go":false,"toy_car_back":false,"toy_car_left":true,"toy_car_right":false}';
-            client.publish(topic, commond);
-        }
-        document.querySelector('#toycar_left').addEventListener('click', 左转);
-        
-        function toycar_right() {
-            var topic = device_id+'/in/write';
-            var commond = '{"toy_car_go":false,"toy_car_back":false,"toy_car_left":false,"toy_car_right":true}';
-            client.publish(topic, commond);
-        }
-        document.querySelector('#toycar_right').addEventListener('click', 右转);
-        
-        function toycar_back() {
-            var topic = device_id+'/in/write';
-            var commond = '{"toy_car_go":false,"toy_car_back":true,"toy_car_left":false,"toy_car_right":false}';
-            client.publish(topic, commond);
-        }
-        document.querySelector('#toycar_back').addEventListener('click', 后退);
-        
-        function toycar_stop() {
-            var topic = device_id+'/in/write';
-            var commond = '{"toy_car_go":false,"toy_car_back":false,"toy_car_left":false,"toy_car_right":false}';
-            client.publish(topic, commond);
-        }
-        document.querySelector('#toycar_stop').addEventListener('click', 停车);
         
         function led_red() {
             var topic = device_id+'/in/write';
@@ -230,6 +197,41 @@
         }
         // document.querySelector('#led_blue').addEventListener('touchstart', led_blue);
         document.querySelector('#led_blue').addEventListener('click', led_blue);
+        
+        function toycar_go() {
+            var topic = device_id+'/in/write';
+            var commond = '{"toy_car_go":true,"toy_car_back":false,"toy_car_left":false,"toy_car_right":false}';
+            client.publish(topic, commond);
+        }
+        document.querySelector('#toycar_go').addEventListener('click', toycar_go);
+        
+        function toycar_left() {
+            var topic = device_id+'/in/write';
+            var commond = '{"toy_car_go":false,"toy_car_back":false,"toy_car_left":true,"toy_car_right":false}';
+            client.publish(topic, commond);
+        }
+        document.querySelector('#toycar_left').addEventListener('click', toycar_left);
+        
+        function toycar_right() {
+            var topic = device_id+'/in/write';
+            var commond = '{"toy_car_go":false,"toy_car_back":false,"toy_car_left":false,"toy_car_right":true}';
+            client.publish(topic, commond);
+        }
+        document.querySelector('#toycar_right').addEventListener('click', toycar_right);
+        
+        function toycar_back() {
+            var topic = device_id+'/in/write';
+            var commond = '{"toy_car_go":false,"toy_car_back":true,"toy_car_left":false,"toy_car_right":false}';
+            client.publish(topic, commond);
+        }
+        document.querySelector('#toycar_back').addEventListener('click', toycar_back);
+        
+        function toycar_stop() {
+            var topic = device_id+'/in/write';
+            var commond = '{"toy_car_go":false,"toy_car_back":false,"toy_car_left":false,"toy_car_right":false}';
+            client.publish(topic, commond);
+        }
+        document.querySelector('#toycar_stop').addEventListener('click', toycar_stop);
     }
 
     // 日志打印在页面的部分    
