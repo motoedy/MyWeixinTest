@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
-    <title>Motoedy的微信遥控车</title>
+    <title>MiCOKit08</title>
     <link href="//code.ionicframework.com/1.0.0-beta.13/css/ionic.css" rel="stylesheet">
     <style>
         #debug {
@@ -45,11 +45,12 @@
  </div>
 
  <div class="button-bar">
-     <a class="button" style="background:red; color:white" id="led_red">红色</a>
-     <a class="button" style="background:green; color:white" id="led_green">绿色</a>
-     <a class="button" style="background:blue; color:white" id="led_blue">蓝色</a>
+     <a class="button" style="background:red; color:white" id="led_red">Red</a>
+     <a class="button" style="background:green; color:white" id="led_green">Green</a>
+     <a class="button" style="background:blue; color:white" id="led_blue">Blue</a>
  </div>
-  <div class="button-bar">     
+ 
+   <div class="button-bar">     
      <a class="button" style="background:black; color:white" id="toycar_go">前进</a>
  </div>
  <div class="button-bar">
@@ -62,8 +63,8 @@
 </div>
 
  <div class="button-bar">
-     <a class="button" style="background:white; color:black" id="led_on">开灯</a>
-     <a class="button" style="background:black; color:white" id="led_off">关灯</a>
+     <a class="button" style="background:white; color:black" id="led_on">On</a>
+     <a class="button" style="background:black; color:white" id="led_off">Off</a>
  </div>
 </div>
 
@@ -128,13 +129,13 @@
                 client.send(message);
             }
             console.log("device_id:"+device_id);
-            console.log("已连接");
+            console.log("onConnect");
             client.subscribe(subtopic, {qos: 0});
         }
         // 连接丢失
         function onConnectionLost(responseObject) {
             if (responseObject.errorCode !== 0)
-                console.log("连接丢失:"+responseObject.errorMessage);
+                console.log("onConnectionLost:"+responseObject.errorMessage);
         }
         // 消息到达
         function onMessageArrived(message) {
@@ -161,7 +162,7 @@
             client.publish(topic, commond);
         }
         // document.querySelector('#led_on').addEventListener('touchstart', led_on);
-        document.querySelector('#led_on').addEventListener('click', 开灯);
+        document.querySelector('#led_on').addEventListener('click', led_on);
 
         function led_off() {
             var topic = device_id+'/in/write';
@@ -169,7 +170,7 @@
             client.publish(topic, commond);
         }
         // document.querySelector('#led_off').addEventListener('touchstart', led_off);
-        document.querySelector('#led_off').addEventListener('click', 关灯);
+        document.querySelector('#led_off').addEventListener('click', led_off);
 
 				function toycar_go() {
             var topic = device_id+'/in/write';
